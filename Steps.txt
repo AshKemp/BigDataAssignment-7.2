@@ -1,0 +1,35 @@
+Solutions
+
+1. SELECT table1.id,table1.name
+FROM employee_details
+WHERE 
+(
+  rating IN 
+  (
+    SELECT TOP (5) rating
+    FROM employee_details as table1
+    GROUP BY rating
+    ORDER BY rating DESC
+  )
+)
+
+2. SELECT table1.id,table1.name
+FROM employee_details
+WHERE 
+(
+  rating IN 
+  (
+    SELECT TOP (3) sal
+    FROM employee_details as table1
+    where (table1.id/2)!=0
+    GROUP BY sal
+    ORDER BY sal DESC
+  )
+)
+
+3. SELECT id,name,max(expense)
+FROM employee_expense;
+
+4. SELECT * from employee_details ed inner join employee_expenses ee on ed.id=ee.id;
+
+5. SELECT * from employee_details ed inner join employee_expenses ee on ed.id!=ee.id; 
